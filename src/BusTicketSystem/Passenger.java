@@ -31,7 +31,7 @@ public class Passenger {
 
 	@Override
 	public String toString() {
-		return "Passenger [name=" + name + ", surname=" + surname + ", gender=" + gender.genderSymbol() + "]";
+		return "Passenger [name= " + name + ", surname= " + surname + ", gender= " + gender.genderSymbol() + "]";
 	}
 
 }

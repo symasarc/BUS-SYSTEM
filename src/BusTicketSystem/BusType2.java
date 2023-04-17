@@ -4,6 +4,8 @@ public class BusType2 extends Bus{
 
 	public BusType2(String busType, String plateNumber, int numberOfSeats, Seat[][] seatLayout) {
 		super(busType, plateNumber, numberOfSeats, seatLayout);
+		
+		createSeatLayout();
 	}
 
 	@Override
@@ -52,6 +54,18 @@ public class BusType2 extends Bus{
 		}
 		return false;
 	}
+	
+	@Override
+	boolean checkBefore(int row, Passenger passenger, int count) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	boolean checkAfter(int row, Passenger passenger, int count) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	@Override
 	public void sellSeat(Passenger passenger, double rowReplacement) { 
@@ -76,7 +90,7 @@ public class BusType2 extends Bus{
 							return;
 						}
 					}
-					if (checkNearestRow(row - 1, passenger, 1, true)) {
+					if (checkBefore(row - 2, passenger, 1)) {
 						return;
 					} else {
 						System.out.println("There is no suitable seat for the " + passenger.toString());
@@ -107,22 +121,12 @@ public class BusType2 extends Bus{
                     sb.append("[ " + seatLayout[j][i].getGender().genderSymbol() + "  ]");
                 }
                 if (j == 2) {
-                    sb.append("\t\t ");
+                    sb.append("\t ");
                 }
             }
             sb.append("\n");
         }
         return sb.toString();
-    }
-
-	@Override
-	boolean checkNearestRow(int row, Passenger passenger, int count, boolean flag) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-
-	
+    }	
 
 }

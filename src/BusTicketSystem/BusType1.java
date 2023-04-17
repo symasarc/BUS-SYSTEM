@@ -4,7 +4,8 @@ public class BusType1 extends Bus {
 
 	public BusType1(String busType, String plateNumber, int numberOfSeats, Seat[][] seatLayout) {
 		super(busType, plateNumber, numberOfSeats, seatLayout);
-
+		
+		createSeatLayout();
 	}
 
 	@Override
@@ -53,46 +54,34 @@ public class BusType1 extends Bus {
 		return false;
 	}
 
-	@Override
-	boolean checkNearestRow(int row, Passenger passenger, int count, boolean flag) {
-		if (row >= 13) {
-			flag = false;
-		}
-		while (row - count > 0 || row + count < 14) {
-			if (flag) {
-				int newRow = row + count;
-				for (int i = 2; i >= 0; i--) {
-					Seat seat = seatLayout[i][row + count];
-					if (checkSeat(seat, passenger)) {
-						return true;
-					}
-				}
-				if (newRow - count + 1 > 0) {
-					checkNearestRow(newRow, passenger, count++, false);
-				} else {
-					checkNearestRow(newRow, passenger, 1 , true);
-				}
-
-			} else {
-				int newRow = row - count;
-				for (int i = 2; i >= 0; i--) {
-					Seat seat = seatLayout[i][newRow];
-					if (checkSeat(seat, passenger)) {
-						return true;
-					}
-				}
-				if (newRow + count + 1 < 14) {
-					checkNearestRow(newRow, passenger, count++, true);
-				} else {
-					checkNearestRow(newRow, passenger, 1, false);
+	boolean checkBefore(int row, Passenger passenger,int count) {
+		if (row >= 0) {
+			for (int i = 2; i >= 0; i--) {
+				Seat seat = seatLayout[i][row];
+				if (checkSeat(seat, passenger)) {
+					return true;
 				}
 			}
 		}
-		return false;
+		count++;
+		return checkAfter(row+count ,passenger,count);
+	}
+	
+	boolean checkAfter(int row, Passenger passenger,int count) {
+		if (row<14) {
+			for (int i = 2; i >= 0; i--) {
+				Seat seat = seatLayout[i][row];
+				if (checkSeat(seat, passenger)) {
+					return true;
+				}
+			}
+		}
+		count++;
+		return checkBefore(row-count ,passenger,count);
 	}
 
 	@Override
-	public void sellSeat(Passenger passenger, double rowReplacement) { 
+	public void sellSeat(Passenger passenger, double rowReplacement) {
 		if (this.numberOfFreeSeats != this.numberOfSeats) {
 			if (rowReplacement == 0) {
 				for (int i = 0; i < 14; i++) {
@@ -114,7 +103,7 @@ public class BusType1 extends Bus {
 							return;
 						}
 					}
-					if (checkNearestRow(row - 1, passenger, 1, true)) {
+					if (checkBefore(row - 2, passenger, 1)) {
 						return;
 					} else {
 						System.out.println("There is no suitable seat for the " + passenger.toString());
@@ -126,34 +115,30 @@ public class BusType1 extends Bus {
 		}
 	}
 
-
-
 	@Override
 	public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 14; i++) {
-            for (int j = 2; j >= 0; j--) {
-                if (seatLayout[j][i].getSeatNumber() == 0) {
-                    continue;
-                }
-                if (seatLayout[j][i].isSeatFree()) {
-                    if (seatLayout[j][i].getSeatNumber() < 10) {
-                        sb.append("[ " + seatLayout[j][i].getSeatNumber() + "  ]");
-                    } else {
-                        sb.append("[ " + seatLayout[j][i].getSeatNumber() + " ]");
-                    }
-                } else {
-                    sb.append("[ " + seatLayout[j][i].getGender().genderSymbol() + "  ]");
-                }
-                if (j == 2) {
-                    sb.append("\t\t ");
-                }
-            }
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < 14; i++) {
+			for (int j = 2; j >= 0; j--) {
+				if (seatLayout[j][i].getSeatNumber() == 0) {
+					continue;
+				}
+				if (seatLayout[j][i].isSeatFree()) {
+					if (seatLayout[j][i].getSeatNumber() < 10) {
+						sb.append("[ " + seatLayout[j][i].getSeatNumber() + "  ]");
+					} else {
+						sb.append("[ " + seatLayout[j][i].getSeatNumber() + " ]");
+					}
+				} else {
+					sb.append("[ " + seatLayout[j][i].getGender().genderSymbol() + "  ]");
+				}
+				if (j == 2) {
+					sb.append("\t\t ");
+				}
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
 
-
-	
 }
