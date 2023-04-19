@@ -16,7 +16,7 @@ public class Ticket {
 	
 	@Override
 	public String toString() {
-		return "Ticket [seat= " + seatNum + ", " + passenger.toString() + " Price= " + this.price + "]";
+		return "Ticket [Seat= " + seatNum + ", " + passenger.toString() + " Price= " + this.price + " TL]";
 	}
 	
 }

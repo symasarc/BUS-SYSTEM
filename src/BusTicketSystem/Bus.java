@@ -9,7 +9,6 @@ public abstract class Bus {
 	protected Seat[][] seatLayout;
 
 	public Bus(String busType, String plateNumber, int numberOfSeats, Seat[][] seatLayout) {
-		super();
 		this.busType = busType;
 		this.plateNumber = plateNumber;
 		this.numberOfSeats = numberOfSeats;

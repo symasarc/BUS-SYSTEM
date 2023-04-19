@@ -8,33 +8,38 @@ public class BusType2 extends Bus {
 	}
 
 	@Override
-	public void createSeatLayout() {
+	public void createSeatLayout() {   
 		int count = 1;
 		for (int i = 0; i < 12; i++) {
 			for (int j = 3; j >= 0; j--) {
-				if (i == 7 && (j == 1 || j == 0)) {
+				if (i == 5 && (j == 1 || j == 0)) {
 					this.seatLayout[j][i] = new Seat(0);
 				} else {
 					this.seatLayout[j][i] = new Seat(count++);
-					if (j == 1) {
-						this.seatLayout[j][i].setNextSeat(seatLayout[j - 1][i]);
-					}
-					if (j == 0) {
-						this.seatLayout[j][i].setNextSeat(seatLayout[j + 1][i]);
-					}
+				}
+			}
+			
+		}
+		for (int i = 0; i < 12; i++) {
+			for (int j = 3; j >= 0; j--) {
+				if (j == 1 || j == 3) {
+					this.seatLayout[j][i].setNextSeat(seatLayout[j - 1][i]);
+				}
+				if (j == 0 || j == 2) {
+					this.seatLayout[j][i].setNextSeat(seatLayout[j + 1][i]);
 				}
 			}
 		}
 
 	}
 
-
-	public boolean checkSeat(Seat seat, Passenger passenger) {
-		if (seat.isSeatFree() && seat.getNextSeat() != null && seat.getNextSeat().getTicket() == null) {
+	@Override
+	public boolean checkSeat(Seat seat, Passenger passenger) {   //checking suitable seats 
+		if (seat.isSeatFree() && seat.getNextSeat().getTicket() == null) {
 			seat.setTicket(seat.getSeatNumber(), passenger);
 			System.out.println(seat.getTicket());
 			return true;
-		} else if (seat.isSeatFree() && seat.getNextSeat() != null) {
+		} else if (seat.isSeatFree() && seat.getNextSeat().getTicket() != null) {
 			if (passenger.getGroupID() == seat.getNextSeat().getTicket().getPassenger().getGroupID()) {
 				seat.setTicket(seat.getSeatNumber(), passenger);
 				System.out.println(seat.getTicket());
@@ -50,7 +55,9 @@ public class BusType2 extends Bus {
 		return false;
 	}
 
-	@Override
+	
+			// checkBefore and checkAfter is used for finding closest seat to preferred row
+	
 	boolean checkBefore(int row, Passenger passenger, int count) {
 		if (row >= 0) {
 			for (int i = 3; i >= 0; i--) {
@@ -59,29 +66,38 @@ public class BusType2 extends Bus {
 					return true;
 				}
 			}
+			if (row + count +1 < 12) {
+				count++;
+				return checkAfter(row + count, passenger, count);
+			} else {
+				return checkBefore(row - count, passenger, count);
+			}
 		}
-		count++;
-		return checkAfter(row + count, passenger, count);
+		return false;
 	}
 
-	@Override
 	boolean checkAfter(int row, Passenger passenger, int count) {
-		if (row<12) {
+		if (row < 12) {
 			for (int i = 3; i >= 0; i--) {
 				Seat seat = seatLayout[i][row];
 				if (checkSeat(seat, passenger)) {
 					return true;
 				}
 			}
+			if (row - count+1 >= 0) {
+				count++;
+				return checkBefore(row - count, passenger, count);
+			} else {
+				return checkAfter(row + count, passenger, count);
+			}
 		}
-		count++;
-		return checkBefore(row-count ,passenger,count);
+		return false;
 	}
 
 	@Override
-	public void sellSeat(Passenger passenger, double rowReplacement) {
-		if (this.numberOfFreeSeats != this.numberOfSeats) {
-			if (rowReplacement == 0) {
+	public void sellSeat(Passenger passenger, double rowReplacement) {   //selling seat for single passenger
+		if (this.getNumberOfFreeSeats() > 0) {  //if there is available seat
+			if (rowReplacement == 0) {          //to avoid our recursive functions(checkAfter and checkBefore) at the first step
 				for (int i = 0; i < 12; i++) {
 					for (int j = 3; j >= 0; j--) {
 						if (checkSeat(seatLayout[j][i], passenger)) {
@@ -101,7 +117,7 @@ public class BusType2 extends Bus {
 							return;
 						}
 					}
-					if (checkBefore(row - 2, passenger, 1)) {
+					if (checkBefore(row - 2, passenger, 1)) {    //if there is no suitable seat at selected row, make this
 						return;
 					} else {
 						System.out.println("There is no suitable seat for the " + passenger.toString());
