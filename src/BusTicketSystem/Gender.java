@@ -1,3 +1,4 @@
+//Betul Eser & Seyma Sarcan
 package BusTicketSystem;
 
 public enum Gender {
@@ -20,3 +21,6 @@ public enum Gender {
 		return this == passenger.getGender();
 	}
 }
+
+
+

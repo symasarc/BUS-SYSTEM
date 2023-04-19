@@ -1,3 +1,4 @@
+//Seyma Sarcan & Betul Eser
 package BusTicketSystem;
 
 public class BusType1 extends Bus {

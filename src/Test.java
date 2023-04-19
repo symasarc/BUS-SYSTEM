@@ -1,3 +1,4 @@
+
 //Betul Eser & Seyma Sarcan
 import BusTicketSystem.*;
 
@@ -72,16 +73,18 @@ public class Test {
 
 		Passenger[] group1 = { passenger, passenger2, passenger9, passenger10, passenger11, passenger12, passenger13,
 				passenger14 };
+		System.out.println("Group1");
 		bus1.sellSeat(group1, 0);
 		System.out.println();
-		System.out.println("Sale Completed for group1: ");
+		System.out.println("Sale Completed for Group1: ");
 		System.out.println();
 		System.out.println(bus1.toString());
 
 		Passenger[] group2 = { passenger3, passenger4, passenger5, passenger6, passenger7, passenger8 };
+		System.out.println("Group2");
 		bus1.sellSeat(group2, 0.5);
 		System.out.println();
-		System.out.println("Sale Completed for group2: ");
+		System.out.println("Sale Completed for Group2: ");
 		System.out.println();
 		System.out.println(bus1.toString());
 
@@ -93,90 +96,93 @@ public class Test {
 
 		bus1.sellSeat(passenger16, 0.3);
 		System.out.println();
-		System.out.println("Sale Completed for Male passenger16: ");
+		System.out.println("Sale Completed for " + passenger16.toString() + ": ");
 		System.out.println();
 		System.out.println(bus1.toString());
 
 		bus1.sellSeat(passenger32, 0.3);
 		System.out.println();
-		System.out.println("Sale Completed for Female passenger32: ");
+		System.out.println("Sale Completed for " + passenger32.toString() + ": ");
 		System.out.println();
 		System.out.println(bus1.toString());
 
 		int[] makeFreeList = { 3, 11 };
 		bus1.makeSeatFree(makeFreeList);
 		System.out.println();
-		System.out.println("Make free(3, 12): ");
+		System.out.println("Make free(3, 11): ");
 		System.out.println();
 		System.out.println(bus1.toString());
 
 		Passenger[] group3 = { passenger17, passenger18, passenger19, passenger20, passenger21, passenger22,
 				passenger25, passenger26, passenger31, passenger33, passenger34 };
+		System.out.println("Group3");
 		bus1.sellSeat(group3, 1);
 		System.out.println();
-		System.out.println("Sale Completed for group3: ");
+		System.out.println("Sale Completed for Group3: ");
 		System.out.println();
 		System.out.println(bus1.toString());
 
 		Passenger[] group4 = { passenger23, passenger24, passenger27, passenger28, passenger29, passenger30,
 				passenger35, passenger36, passenger37, passenger38, passenger39, passenger40, passenger41 };
+		System.out.println("Group4");
 		bus1.sellSeat(group4, 0);
 		System.out.println();
-		System.out.println("Sale after group4: ");
+		System.out.println("Sale after Group4: ");
 		System.out.println();
 		System.out.println(bus1.toString());
 
 		bus1.sellSeat(passenger42, 0.8);
 		System.out.println();
-		System.out.println("Sale after passenger42: ");
+		System.out.println("Sale after " + passenger42.toString() + ": ");
 		System.out.println();
 		System.out.println(bus1.toString());
 
 		bus1.sellSeat(passenger43, 0.5);
 		System.out.println();
-		System.out.println("Sale after passenger43: ");
+		System.out.println("Sale after " + passenger43.toString() + ": ");
 		System.out.println();
 		System.out.println(bus1.toString());
-		
+
 		bus1.sellSeat(passenger44, 0.9);
 		System.out.println();
-		System.out.println("Sale after passenger44: ");
+		System.out.println("Sale after " + passenger44.toString() + ": ");
 		System.out.println();
 		System.out.println(bus1.toString());
-		
 
 		bus1.makeAllFree();
 		System.out.println("Make All Free: ");
 		System.out.println();
 		System.out.println(bus1.toString());
 
+		System.out.println("Group1");
 		bus2.sellSeat(group1, 0);
 		System.out.println();
-		System.out.println("Sale Completed for group1: ");
+		System.out.println("Sale Completed for Group1: ");
 		System.out.println();
 		System.out.println(bus2.toString());
 
+		System.out.println("Group2");
 		bus2.sellSeat(group2, 0.5);
 		System.out.println();
-		System.out.println("Sale Completed for group2: ");
+		System.out.println("Sale Completed for Group2: ");
 		System.out.println();
 		System.out.println(bus2.toString());
 
 		bus2.sellSeat(passenger15, 0.35);
 		System.out.println();
-		System.out.println("Sale Completed for Male passenger15: ");
+		System.out.println("Sale Completed for " + passenger15.toString() + ": ");
 		System.out.println();
 		System.out.println(bus2.toString());
-		
+
 		bus2.sellSeat(passenger32, 0.35);
 		System.out.println();
-		System.out.println("Sale Completed for Female passenger32: ");
+		System.out.println("Sale Completed for " + passenger32.toString() + ": ");
 		System.out.println();
 		System.out.println(bus2.toString());
 
 		bus2.sellSeat(passenger16, 0.35);
 		System.out.println();
-		System.out.println("Sale Completed for Male passenger16: ");
+		System.out.println("Sale Completed for " + passenger16.toString() + ": ");
 		System.out.println();
 		System.out.println(bus2.toString());
 
@@ -187,35 +193,38 @@ public class Test {
 		System.out.println();
 		System.out.println(bus2.toString());
 
+		System.out.println("Group3");
 		bus2.sellSeat(group3, 1);
 		System.out.println();
-		System.out.println("Sale Completed for group3: ");
+		System.out.println("Sale Completed for Group3: ");
 		System.out.println();
 		System.out.println(bus2.toString());
 
+		System.out.println("Group4");
 		bus2.sellSeat(group4, 0);
 		System.out.println();
-		System.out.println("Sale after group4: ");
+		System.out.println("Sale after Group4: ");
 		System.out.println();
 		System.out.println(bus2.toString());
 
 		bus2.sellSeat(passenger42, 0.8);
 		System.out.println();
-		System.out.println("Sale after passenger42: ");
+		System.out.println("Sale after " + passenger42.toString() + ": ");
 		System.out.println();
 		System.out.println(bus2.toString());
 
 		bus2.sellSeat(passenger43, 0.7);
 		System.out.println();
-		System.out.println("Sale after passenger43: ");
+		System.out.println("Sale after " + passenger43.toString() + ": ");
 		System.out.println();
 		System.out.println(bus2.toString());
 
 		Passenger[] group5 = { passenger44, passenger45, passenger46, passenger47, passenger48, passenger49,
 				passenger50 };
+		System.out.println("Group5");
 		bus2.sellSeat(group5, 0.6);
 		System.out.println();
-		System.out.println("Sale Completed for group5: ");
+		System.out.println("Sale Completed for Group5: ");
 		System.out.println();
 		System.out.println(bus2.toString());
 
@@ -225,4 +234,3 @@ public class Test {
 		System.out.println(bus2.toString());
 	}
 }
-

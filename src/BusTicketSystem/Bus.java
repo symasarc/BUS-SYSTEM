@@ -1,3 +1,4 @@
+//Seyma SARCAN & Betul ESER
 package BusTicketSystem;
 
 public abstract class Bus {
@@ -54,7 +55,7 @@ public abstract class Bus {
 			}
 		}
 	}
-	public void makeSeatFree(int[] seatNums) {   //For multiple passenger
+	public void makeSeatFree(int[] seatNums) {   //For multiple passengers
 		for (int seatNum : seatNums) {
 			makeSeatFree(seatNum);
 		}

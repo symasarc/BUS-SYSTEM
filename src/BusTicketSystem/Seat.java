@@ -1,3 +1,4 @@
+//Seyma Sarcan & Betul Eser
 package BusTicketSystem;
 
 public class Seat {
@@ -17,6 +18,7 @@ public class Seat {
 		this.ticket = new Ticket(seatNum, passenger);
 		return this.ticket;
 	}
+	
 	public Ticket setTicket(Ticket ticket) {
 		this.ticket = ticket;
 		return this.ticket;
@@ -42,6 +44,5 @@ public class Seat {
 	public Gender getGender() {
 		return ticket.getPassenger().getGender();
 	}
-	
 	
 }
