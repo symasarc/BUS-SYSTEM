@@ -1,10 +1,9 @@
 package BusTicketSystem;
 
-public class BusType2 extends Bus{
-
+public class BusType2 extends Bus {
 	public BusType2(String busType, String plateNumber, int numberOfSeats, Seat[][] seatLayout) {
 		super(busType, plateNumber, numberOfSeats, seatLayout);
-		
+
 		createSeatLayout();
 	}
 
@@ -26,16 +25,12 @@ public class BusType2 extends Bus{
 				}
 			}
 		}
-		
+
 	}
-	
-//againn
+
+
 	public boolean checkSeat(Seat seat, Passenger passenger) {
-		if (seat.isSeatFree() && seat.getNextSeat() == null) {
-			seat.setTicket(seat.getSeatNumber(), passenger);
-			System.out.println(seat.getTicket());
-			return true;
-		} else if (seat.isSeatFree() && seat.getNextSeat() != null && seat.getNextSeat().getTicket() == null) {
+		if (seat.isSeatFree() && seat.getNextSeat() != null && seat.getNextSeat().getTicket() == null) {
 			seat.setTicket(seat.getSeatNumber(), passenger);
 			System.out.println(seat.getTicket());
 			return true;
@@ -54,21 +49,37 @@ public class BusType2 extends Bus{
 		}
 		return false;
 	}
-	
+
 	@Override
 	boolean checkBefore(int row, Passenger passenger, int count) {
-		// TODO Auto-generated method stub
-		return false;
+		if (row >= 0) {
+			for (int i = 3; i >= 0; i--) {
+				Seat seat = seatLayout[i][row];
+				if (checkSeat(seat, passenger)) {
+					return true;
+				}
+			}
+		}
+		count++;
+		return checkAfter(row + count, passenger, count);
 	}
 
 	@Override
 	boolean checkAfter(int row, Passenger passenger, int count) {
-		// TODO Auto-generated method stub
-		return false;
+		if (row<12) {
+			for (int i = 3; i >= 0; i--) {
+				Seat seat = seatLayout[i][row];
+				if (checkSeat(seat, passenger)) {
+					return true;
+				}
+			}
+		}
+		count++;
+		return checkBefore(row-count ,passenger,count);
 	}
 
 	@Override
-	public void sellSeat(Passenger passenger, double rowReplacement) { 
+	public void sellSeat(Passenger passenger, double rowReplacement) {
 		if (this.numberOfFreeSeats != this.numberOfSeats) {
 			if (rowReplacement == 0) {
 				for (int i = 0; i < 12; i++) {
@@ -102,31 +113,30 @@ public class BusType2 extends Bus{
 		}
 	}
 
-
-    @Override
+	@Override
 	public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 12; i++) {
-            for (int j = 3; j >= 0; j--) {
-                if (seatLayout[j][i].getSeatNumber() == 0) {
-                    continue;
-                }
-                if (seatLayout[j][i].isSeatFree()) {
-                    if (seatLayout[j][i].getSeatNumber() < 10) {
-                        sb.append("[ " + seatLayout[j][i].getSeatNumber() + "  ]");
-                    } else {
-                        sb.append("[ " + seatLayout[j][i].getSeatNumber() + " ]");
-                    }
-                } else {
-                    sb.append("[ " + seatLayout[j][i].getGender().genderSymbol() + "  ]");
-                }
-                if (j == 2) {
-                    sb.append("\t ");
-                }
-            }
-            sb.append("\n");
-        }
-        return sb.toString();
-    }	
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < 12; i++) {
+			for (int j = 3; j >= 0; j--) {
+				if (seatLayout[j][i].getSeatNumber() == 0) {
+					continue;
+				}
+				if (seatLayout[j][i].isSeatFree()) {
+					if (seatLayout[j][i].getSeatNumber() < 10) {
+						sb.append("[ " + seatLayout[j][i].getSeatNumber() + "  ]");
+					} else {
+						sb.append("[ " + seatLayout[j][i].getSeatNumber() + " ]");
+					}
+				} else {
+					sb.append("[ " + seatLayout[j][i].getGender().genderSymbol() + "  ]");
+				}
+				if (j == 2) {
+					sb.append("\t ");
+				}
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
 
 }

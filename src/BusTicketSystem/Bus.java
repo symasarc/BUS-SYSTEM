@@ -40,7 +40,7 @@ public abstract class Bus {
 		return numberOfFreeSeats;
 	}
 
-	public void makeSeatFree(int seatNum) {
+	public void makeSeatFree(int seatNum) {  //For single passenger
 		if (seatNum < 1 || seatNum > numberOfSeats) {
 			System.out.println("Invalid number!");
 		} else {
@@ -55,13 +55,13 @@ public abstract class Bus {
 			}
 		}
 	}
-	public void makeSeatFree(int[] seatNums) {
+	public void makeSeatFree(int[] seatNums) {   //For multiple passenger
 		for (int seatNum : seatNums) {
 			makeSeatFree(seatNum);
 		}
 	}
 	
-	public void makeAllFree() {
+	public void makeAllFree() {   
 		for (Seat[] seats : seatLayout) {
 			for (Seat seat : seats) {
 				if (!seat.isSeatFree()) {
@@ -71,15 +71,14 @@ public abstract class Bus {
 		}
 	}
 
-	public void sellSeat(Passenger[] passengers, double rowReplacement) {
-		if (this.numberOfFreeSeats != this.numberOfSeats) {
+	public void sellSeat(Passenger[] passengers, double rowReplacement) {  //Selling multiple seat
 			for (Passenger passenger : passengers) {
 				sellSeat(passenger, rowReplacement);
 			}
 		}
-	}
+	
 
-	public Seat[][] getSeatLayout() {
+	public Seat[][] getSeatLayout() {  
 		return seatLayout;
 	}
 

@@ -46,6 +46,7 @@ public class Test {
 		Passenger passenger40 = new Passenger("Bera", "Demir", Gender.MALE, 13);
 		Passenger passenger41 = new Passenger("Sera", "Ak", Gender.FEMALE, 13);
 		Passenger passenger42 = new Passenger("Seray", "Kara", Gender.FEMALE, 5);
+		Passenger passenger43 = new Passenger("Eray", "Kara", Gender.MALE, 6);
 		
 		//Buses
 		BusType1 bus1 = new BusType1("Single", "06 ANK 5214", 40, new Seat[3][14]);
@@ -63,46 +64,62 @@ public class Test {
 		
 		Passenger[] group1 = {passenger, passenger2, passenger9, passenger10, passenger11,passenger12, passenger13, passenger14};
 		bus1.sellSeat(group1, 0);
-		System.out.println("Sale Completed for group1!");
+		System.out.println();
+		System.out.println("Sale Completed for group1: ");
 		System.out.println(bus1.toString());
 		
 		Passenger[] group2 = {passenger3, passenger4, passenger5, passenger6, passenger7,passenger8};
 		bus1.sellSeat(group2, 0.5);
-		System.out.println("Sale Completed for group2!");
+		System.out.println();
+		System.out.println("Sale Completed for group2: ");
 		System.out.println(bus1.toString());
 		
 		bus1.sellSeat(passenger15, 0.3);
-		System.out.println("Sale Completed for Male passenger15!");
+		System.out.println();
+		System.out.println("Sale Completed for Male passenger15: ");
 		System.out.println(bus1.toString());
 		
 		bus1.sellSeat(passenger16, 0.3);
-		System.out.println("Sale Completed for Male passenger16!");
+		System.out.println();
+		System.out.println("Sale Completed for Male passenger16: ");
 		System.out.println(bus1.toString());
 		
 		bus1.sellSeat(passenger32, 0.3);
-		System.out.println("Sale Completed for Female passenger32!");
+		System.out.println();
+		System.out.println("Sale Completed for Female passenger32: ");
 		System.out.println(bus1.toString());
 
 		int[] makeFreeList = {3, 12, 13};
 		bus1.makeSeatFree(makeFreeList);
+		System.out.println();
 		System.out.println("Make free: ");
 		System.out.println(bus1.toString());
 		
         Passenger[] group3= {passenger17, passenger18, passenger19, passenger20, passenger21, passenger22, passenger25, passenger26, passenger31,passenger33,passenger34};
 		bus1.sellSeat(group3, 1);
-		System.out.println("Sale Completed for group3!");
+		System.out.println();
+		System.out.println("Sale Completed for group3: ");
 		System.out.println(bus1.toString());
 		
         Passenger[] group4 = {passenger23, passenger24,passenger27, passenger28, passenger29, passenger30, passenger35, passenger36, passenger37,passenger38, passenger39, passenger40, passenger41};
 		bus1.sellSeat(group4, 0);
-		System.out.println("Sale after group4!");
+		System.out.println();
+		System.out.println("Sale after group4: ");
 		System.out.println(bus1.toString());
 		
-		bus1.sellSeat(passenger42, 0.3);
-		System.out.println("Sale after passenger42!");
+		bus1.sellSeat(passenger42, 0.8);
+		System.out.println();
+		System.out.println("Sale after passenger42: ");
 		System.out.println(bus1.toString());
-//        bus1.makeAllFree();
-//        System.out.println(bus1.toString());
+		
+		bus1.sellSeat(passenger43, 0.7);
+		System.out.println();
+		System.out.println("Sale after passenger43: ");
+		System.out.println(bus1.toString());
+		
+        bus1.makeAllFree();
+        System.out.println("MakeAllFree: ");
+        System.out.println(bus1.toString());
 
 }
 }
