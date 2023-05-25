@@ -56,6 +56,7 @@ public class Test {
 		Passenger passenger48 = new Passenger("Sinan", "Erdem", Gender.MALE, 7);
 		Passenger passenger49 = new Passenger("Can", "Cal", Gender.MALE, 7);
 		Passenger passenger50 = new Passenger("Timur", "Gulbahar", Gender.MALE, 7);
+		Passenger passenger51 = new Passenger("Timur", "Gulbahar", Gender.MALE, 7);
 
 		// Buses
 		BusType1 bus1 = new BusType1("Luxury", "06 ANK 5214", 40, new Seat[3][14]);
