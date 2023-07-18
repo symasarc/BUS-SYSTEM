@@ -1,4 +1,3 @@
-//Betul Eser & Seyma Sarcan
 package BusTicketSystem;
 
 public enum Gender {
