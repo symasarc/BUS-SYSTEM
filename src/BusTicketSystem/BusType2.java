@@ -1,4 +1,3 @@
-//Betul Eser & Seyma Sarcan
 package BusTicketSystem;
 
 public class BusType2 extends Bus {
@@ -56,41 +55,39 @@ public class BusType2 extends Bus {
 		return false;
 	}
 
-	// checkBefore and checkAfter is used for finding closest seat to preferred row
-
-	boolean checkBefore(int row, Passenger passenger, int count) {
-		if (row >= 0) {
+	public boolean checkRow(int row, Passenger passenger, int count) {
+		if (row >= 0 && row < 12) {
 			for (int i = 3; i >= 0; i--) {
 				Seat seat = seatLayout[i][row];
 				if (checkSeat(seat, passenger)) {
 					return true;
 				}
 			}
-			if (row + count + 1 < 12) {
-				count++;
-				return checkAfter(row + count, passenger, count);
-			} else {
-				return checkBefore(row - count, passenger, count);
-			}
+			count += 2;
+			row += (int) (count * Math.pow(-1, count - 1));
+			count = 1;
+			return checkRow(row, passenger, count);
 		}
-		return false;
-	}
 
-	boolean checkAfter(int row, Passenger passenger, int count) {
-		if (row < 12) {
+		else if (row == 12) {
+			row -= 2;
 			for (int i = 3; i >= 0; i--) {
 				Seat seat = seatLayout[i][row];
 				if (checkSeat(seat, passenger)) {
 					return true;
 				}
 			}
-			if (row - count + 1 >= 0) {
-				count++;
-				return checkBefore(row - count, passenger, count);
-			} else {
-				return checkAfter(row + count, passenger, count);
+			while (row > 0) {
+				row -= 1;
+				for (int i = 3; i >= 0; i--) {
+					Seat seat = seatLayout[i][row];
+					if (checkSeat(seat, passenger)) {
+						return true;
+					}
+				}
 			}
 		}
+
 		return false;
 	}
 
@@ -117,7 +114,7 @@ public class BusType2 extends Bus {
 							return;
 						}
 					}
-					if (checkBefore(row - 2, passenger, 1)) { // if there is no suitable seat at selected row, make this
+					if (checkRow(row, passenger, 0)) { // if there is no suitable seat at selected row, make this
 						return;
 					} else {
 						System.out.println("There is no suitable seat for the " + passenger.toString());
