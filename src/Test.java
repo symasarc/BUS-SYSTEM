@@ -1,5 +1,3 @@
-
-//Betul Eser & Seyma Sarcan
 import BusTicketSystem.*;
 
 public class Test {
