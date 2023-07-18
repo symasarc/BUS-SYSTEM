@@ -1,8 +1,7 @@
 # CENG114BUS
 -------
-## Authors
--------
--Şeyma SARCAN
+## Authors:
+-Şeyma SARCAN  
 -Betül ESER
 -------
 ## OOP
