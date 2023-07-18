@@ -1,4 +1,3 @@
-//Seyma SARCAN & Betul ESER
 package BusTicketSystem;
 
 public abstract class Bus {
@@ -40,7 +39,7 @@ public abstract class Bus {
 		return numberOfFreeSeats;
 	}
 
-	public void makeSeatFree(int seatNum) {  //For single passenger
+	public void makeSeatFree(int seatNum) { // For single passenger
 		if (seatNum < 1 || seatNum > numberOfSeats) {
 			System.out.println("Invalid number!");
 		} else {
@@ -55,13 +54,14 @@ public abstract class Bus {
 			}
 		}
 	}
-	public void makeSeatFree(int[] seatNums) {   //For multiple passengers
+
+	public void makeSeatFree(int[] seatNums) { // For multiple passengers
 		for (int seatNum : seatNums) {
 			makeSeatFree(seatNum);
 		}
 	}
-	
-	public void makeAllFree() {   
+
+	public void makeAllFree() {
 		for (Seat[] seats : seatLayout) {
 			for (Seat seat : seats) {
 				if (!seat.isSeatFree()) {
@@ -71,21 +71,22 @@ public abstract class Bus {
 		}
 	}
 
-	public void sellSeat(Passenger[] passengers, double rowReplacement) {  //Selling multiple seat
-			for (Passenger passenger : passengers) {
-				sellSeat(passenger, rowReplacement);
-			}
+	public void sellSeat(Passenger[] passengers, double rowReplacement) { // Selling multiple seat
+		for (Passenger passenger : passengers) {
+			sellSeat(passenger, rowReplacement);
 		}
-	
+	}
 
-	public Seat[][] getSeatLayout() {  
+	public Seat[][] getSeatLayout() {
 		return seatLayout;
 	}
 
 	abstract void createSeatLayout();
+
 	abstract boolean checkSeat(Seat seat, Passenger passenger);
-	abstract boolean checkBefore(int row, Passenger passenger,int count);
-	abstract boolean checkAfter(int row, Passenger passenger,int count);
+
+	abstract boolean checkRow(int row, Passenger passenger, int count);
+
 	abstract void sellSeat(Passenger passenger, double rowReplacement);
 
 }
